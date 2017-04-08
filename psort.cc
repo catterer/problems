@@ -32,9 +32,12 @@ static void psort(IterT b, IterT e) {
     std::list<std::future<void>> fs{};
     auto perthr = l/nthr;
     for (auto i = 0; i < nthr; i++)
-        fs.push_back(std::async(
-            [] (auto b, auto e) { std::sort(b, e); },
-            b + perthr * i, b + (i == nthr-1 ? l : perthr * (i+1))));
+        fs.push_back(
+            std::async(
+                [] (auto b, auto e) { std::sort(b, e); },
+                b + perthr * i,
+                i == nthr-1 ? e : (b + perthr * (i+1))
+            ));
 
     for (auto&& f: fs)
         f.get();
