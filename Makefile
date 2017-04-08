@@ -1,4 +1,4 @@
-all: braces gen_braces reverse remove_duplicates_o2 tree_hor median deps
+all: braces gen_braces reverse remove_duplicates_o2 tree_hor median deps psort
 
 braces: braces.cc
 	g++ braces.cc -std=c++1y -Wall -o braces
@@ -14,7 +14,9 @@ median: median.cc
 	g++ median.cc -Wall -o median
 deps: deps.cc
 	g++ deps.cc -Wall -o deps
+psort: psort.cc
+	g++ psort.cc -Wall -o psort -lpthread
 
 clean:
-	rm -rf braces gen_braces reverse remove_duplicates_o2 tree_hor median deps
+	rm -rf braces gen_braces reverse remove_duplicates_o2 tree_hor median deps psort
 
