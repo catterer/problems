@@ -25,6 +25,7 @@ int main(int argc, char** argv) {
     ns -= ns % 2;
     auto accum = std::shared_ptr<char>((char*)malloc(ns + 1), [] (char* p) { free(p); } );
 
-    sasha(accum.get(), accum.get(), ns, 0);
+    for (int i = 0; i < ns; i += 2)
+        sasha(accum.get(), accum.get(), i+2, 0);
     return 0;
 }
